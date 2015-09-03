@@ -1,33 +1,27 @@
-#!/usr/bin/env node
+'use strict';
 
-var	synonymCLI	= require("commander"),
-	colors		= require("colors"),
-	natural		= require("natural"),
-	util		= require("util"),
-	packageInfo	= require("./package.json"),
-	wordnet		= new natural.WordNet();
+var natural = require('natural'),
+    wordnet = new natural.WordNet();
 
-synonymCLI
-	.version(packageInfo.version)
-	//.option("-d --definition","Show example sentences/definitions")
-	.parse(process.argv);
+/**
+ * Runs [cb] on [n] synonyms of [word]. If [n] is 0, uses all synonyms.
+ */
+module.exports = function (word, n, cb) {
+  wordnet.lookup(word, function(results) {
 
-synonymCLI.args.forEach(lookupSynonyms);
+    var synonyms = results
+      // Get synonyms
+      .reduce(function(acc, current) {
+        return acc.concat(current.synonyms)
+      }, [])
+      // Unique
+      .reduce(function(acc, current) {
+        if (acc.indexOf(current) >= 0) return acc;
+        return acc.concat([current]);
+      }, []);
 
-function lookupSynonyms(synonym) {
-	wordnet.lookup(synonym, function(results) {
-		console.log(synonym.yellow);
-		
-		var synonymList =
-			results.reduce(function(prev,result) {
-				return prev.concat(result.synonyms)
-			},[])
-			.reduce(function(prev,cur) {
-				if (prev.indexOf(cur) >= 0) return prev;
-				return prev.concat([cur]);
-			},[])
-			.sort();
-		
-		console.log("\t" + synonymList.join(" ") + "\n");
-	});
+    if (n > 0 && n < synonyms.length) synonyms.splice(n, synonyms.length - n);
+
+    cb(synonyms);
+  });
 }

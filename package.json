@@ -1,16 +1,11 @@
 {
-  "name": "synonym",
-  "version": "0.0.2",
-  "description": "Display synonyms for a word on your CLI",
+  "name": "find-synonyms",
+  "version": "0.0.1",
+  "description": "Find synonyms from Node",
   "main": "index.js",
-  "bin": {
-    "synonym": "./index.js"
-  },
   "dependencies": {
-    "WNdb": "~3.0.1",
-    "natural": "~0.1.21",
-    "commander": "~1.1.1",
-    "colors": "~0.6.0-1"
+    "WNdb": "^3.1.1",
+    "natural": "~0.1.21"
   },
   "devDependencies": {},
   "scripts": {
@@ -18,11 +13,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cgiffard/node-synonyms"
+    "url": "git://github.com/ajay-gandhi/find-synonyms"
   },
   "keywords": [
     "synonyms"
   ],
-  "author": "Christopher Giffard <christopher.giffard@cgiffard.com>",
-  "license": "BSD"
+  "author": "Ajay Gandhi",
+  "license": "ISC"
 }
