@@ -19,6 +19,7 @@ Use in your project:
 var synonyms = require('find-synonyms');
 
 // Finds up to n synonyms of word
+// If n = 0, returns all found synonyms
 synonyms(word, n, function (syns) {
   // syns has length at most n and has synonyms of word
 });
