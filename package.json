@@ -4,8 +4,8 @@
   "description": "Find synonyms from Node",
   "main": "index.js",
   "dependencies": {
-    "WNdb": "^3.1.1",
-    "natural": "~0.1.21"
+    "natural": "^0.6.1",
+    "wordnet-db": "^3.1.11"
   },
   "devDependencies": {},
   "scripts": {
